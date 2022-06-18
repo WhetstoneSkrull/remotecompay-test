@@ -31757,7 +31757,7 @@ var render = function () {
                   language_selector: true,
                   wrap_code: true,
                   min_height: "400px",
-                  min_width: "250px",
+                  min_width: "300px",
                 },
                 model: {
                   value: _vm.snippet.snippet,

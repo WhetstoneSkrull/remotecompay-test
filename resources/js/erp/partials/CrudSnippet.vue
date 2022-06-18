@@ -30,7 +30,7 @@
                        
 
                         <CodeEditor v-model="snippet.snippet" :language_selector="true"  :wrap_code="true" 
-                            min_height="400px" min_width="250px"
+                            min_height="400px" min_width="300px"
                         ></CodeEditor>
 
 
