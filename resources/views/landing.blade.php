@@ -14,9 +14,9 @@
         <link rel="icon" href="<%= BASE_URL %>favicon.ico">
 
         <link href=" {{ ('css/atmos.min.css') }}" rel="stylesheet">
-        <script src="{{ ('js/atmos.min.js') }}"></script>
-      
+        <link rel="stylesheet" type="text/css" href="{{ ('fonts/feather/feather-icons.css') }}">
 
+      
 
     </head>
     <body >
@@ -26,6 +26,8 @@
         </div>
         <script src="{{ ('js/app.js') }}"></script>
           <script src="{{ ('js/atmos.min.js') }}"></script>
+          <script src="{{ ('js/jquery.min.js') }}"></script>
+
 
     </body>
     </html>

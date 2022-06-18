@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\UrlLink;
+use Illuminate\Support\Facades\Validator;
+
 
 class UrlLinkController extends Controller
 {
@@ -13,7 +16,8 @@ class UrlLinkController extends Controller
      */
     public function index()
     {
-        //
+        $urls = UrlLink::get();
+        return response()->json($urls, 200);
     }
 
     /**
@@ -36,7 +40,8 @@ class UrlLinkController extends Controller
     {
         $v = Validator::make($request->all(), [
             'title' => 'required',
-            'file' => 'required',
+            'url_link' => 'required',
+            'is_open_in_new_tab' => 'required',
             
         ]);
         if ($v->fails()) {
@@ -46,10 +51,13 @@ class UrlLinkController extends Controller
             ], 422);
         }
 
-        $newpdf = new PdfDownload;
-        $newpdf->title = $request->title;
-        $newpdf->url_link = $request->url_link;
-        $newpdf->is_open_in_new_tab = $request->is_open_in_new_tab;
+        $links = new UrlLink;
+        $links->title = $request->title;
+        $links->url_link = $request->url_link;
+        $links->is_open_in_new_tab = $request->is_open_in_new_tab;
+        $links -> save();
+
+        return response()->json($links,200);
 
     }
 
@@ -84,7 +92,13 @@ class UrlLinkController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $links = UrlLink::find($id);
+        $links->title = $request->title;
+        $links->url_link = $request->url_link;
+        $links->is_open_in_new_tab = $request->is_open_in_new_tab;
+        $updateModel = $links->update();
+
+        return response()->json($links, 200);
     }
 
     /**
@@ -95,6 +109,9 @@ class UrlLinkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $links =  UrlLink::findOrfail($id);
+        $links->delete();
+
+        return response()->json($links, 200);
     }
 }

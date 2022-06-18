@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\HtmlSnippet;
+use App\Models\PdfDownload;
+use App\Models\UrlLink;
+
 
 class ERPController extends Controller
 {
@@ -13,7 +17,12 @@ class ERPController extends Controller
      */
     public function index()
     {
-        //
+        $HtmlSnippet = HtmlSnippet::get();
+        $PdfDownload = PdfDownload::get();
+        $UrlLink = UrlLink::get();
+        $merged = $PdfDownload->merge($HtmlSnippet)->merge($UrlLink);
+
+        return response()->json($merged, 200);
     }
 
     /**

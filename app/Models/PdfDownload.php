@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class PdfDownload extends Model
 {
     use HasFactory;
+
+    public function getItemTypeAttribute()
+    { 
+        
+      return 'File';
+        
+    }
+
+    protected $appends = ['item_type'];
+
+
 }

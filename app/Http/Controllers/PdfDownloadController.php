@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PdfDownload;
+use Illuminate\Support\Facades\Validator;
 
 class PdfDownloadController extends Controller
 {
@@ -14,7 +15,8 @@ class PdfDownloadController extends Controller
      */
     public function index()
     {
-        //
+        $pdfs = PdfDownload::get();
+        return response()->json($pdfs, 200);
     }
 
     /**
@@ -47,9 +49,19 @@ class PdfDownloadController extends Controller
             ], 422);
         }
 
-        $newClaim = new PdfDownload;
-        $newClaim->title = $request->title;
-        $newClaim->file = $request->file;
+        if($request->file('file')) {
+            $pdfs = $request->file('file');
+            $name = time().'.'.$pdfs->getClientOriginalExtension();
+            $destinationPath = public_path('/pdfs');
+            $pdfs->move($destinationPath, $name);
+        }
+
+        $newPdf = new PdfDownload;
+        $newPdf->title = $request->title;
+        $newPdf->file = $name;
+        $newPdf -> save();
+
+        return response()->json($newPdf,200);
     }
 
     /**

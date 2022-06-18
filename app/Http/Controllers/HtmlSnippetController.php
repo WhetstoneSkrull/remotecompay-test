@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\HtmlSnippet;
+use Illuminate\Support\Facades\Validator;
+
 
 class HtmlSnippetController extends Controller
 {
@@ -13,7 +16,8 @@ class HtmlSnippetController extends Controller
      */
     public function index()
     {
-        //
+        $snips = HtmlSnippet::get();
+        return response()->json($snips, 200);
     }
 
     /**
@@ -46,10 +50,16 @@ class HtmlSnippetController extends Controller
                 'errors' => $v->errors(),
             ], 422);
         }
+        // $snippet = $request->isMethod('put') ? HtmlSnippet::findOrfail
+        // ($request->snippet_id) : new HtmlSnippet;
+  
+        $snippet = new HtmlSnippet;
+        $snippet->title = $request->title;
+        $snippet->description = $request->description;
+        $snippet->snippet = $request->snippet;
+        $snippet-> save();
 
-        $newClaim = new PdfDownload;
-        $newClaim->title = $request->title;
-        $newClaim->file = $request->file;
+        return response()->json($snippet,200);
     }
 
     /**
@@ -71,7 +81,7 @@ class HtmlSnippetController extends Controller
      */
     public function edit($id)
     {
-        //
+       //
     }
 
     /**
@@ -83,7 +93,14 @@ class HtmlSnippetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $snippet = HtmlSnippet::find($id);
+        $snippet->title = $request->title;
+        $snippet->description = $request->description;
+        $snippet->snippet = $request->snippet;
+        $updateModel = $snippet->update();
+
+        return response()->json($snippet, 200);
     }
 
     /**
@@ -94,6 +111,9 @@ class HtmlSnippetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $snippet =  HtmlSnippet::findOrfail($id);
+        $snippet->delete();
+
+        return response()->json($snippet, 200);
     }
 }
