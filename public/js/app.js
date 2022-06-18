@@ -6099,7 +6099,7 @@ __webpack_require__(/*! ../sass/app.scss */ "./resources/sass/app.scss");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].use((vue_toasted__WEBPACK_IMPORTED_MODULE_0___default())); //crud toast
 
-vue__WEBPACK_IMPORTED_MODULE_1__["default"].toasted.register('crudAdded', 'Added Successfully!', {
+vue__WEBPACK_IMPORTED_MODULE_1__["default"].toasted.register('crudAdded', 'Completed Successfully!', {
   type: 'info' // icon : 'check_circle'
 
 }); // router

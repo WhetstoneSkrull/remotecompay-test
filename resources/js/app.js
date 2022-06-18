@@ -9,7 +9,7 @@ Vue.use(Toasted)
 
 
   //crud toast
-  Vue.toasted.register('crudAdded', 'Added Successfully!', {
+  Vue.toasted.register('crudAdded', 'Completed Successfully!', {
     type : 'info',
     // icon : 'check_circle'
     });
