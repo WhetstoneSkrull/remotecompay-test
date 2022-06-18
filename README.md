@@ -16,4 +16,4 @@ create db name in .env file
 
 php artisan Migrate
 
-##Thank You!
+## Thank You!
