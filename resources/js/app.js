@@ -4,10 +4,8 @@ require('../sass/app.scss')
 import Vue from 'vue'
 import Toasted from 'vue-toasted';
 
-
 window.Vue = require('vue');
 Vue.use(Toasted)
-
 
 
   //crud toast

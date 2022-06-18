@@ -26,12 +26,15 @@
                     </div>
 
                     <div class="form-group col-md-12">
-                        <label>Snippet</label>
-                        <textarea
-                            class="form-control"
-                            rows="5"
-                            v-model="snippet.snippet"
-                        ></textarea>
+                        <label>Code Snippet  </label>
+                       
+
+                        <CodeEditor v-model="snippet.snippet" :language_selector="true"  :wrap_code="true" 
+                            min_height="400px" min_width="250px"
+                        ></CodeEditor>
+
+
+
                     </div>
                 </div>
 
@@ -64,7 +67,14 @@
     </div>
 </template>
 <script>
+    import CodeEditor from 'simple-code-editor';
+
+
 export default {
+
+ components: {
+      CodeEditor
+    },
     data() {
         return {
             snippet: {
@@ -137,6 +147,7 @@ export default {
                     });
             }
         },
+        
     },
     created() {
         this.fetchAll();
